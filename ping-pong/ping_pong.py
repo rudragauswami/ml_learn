@@ -1,7 +1,7 @@
 """
-Antigravity Ping Pong
-=====================
-A 2D zero-gravity ping pong game controlled by hand gestures via webcam.
+Ping Pong
+=========
+A 2D ping pong game controlled by hand gestures via webcam.
 Uses OpenCV for video capture, MediaPipe for real-time hand tracking.
 
 Controls:
@@ -18,7 +18,7 @@ import math
 import time
 
 # ──────────────────────── Constants ────────────────────────
-WINDOW_NAME = "Antigravity Ping Pong"
+WINDOW_NAME = "Ping Pong"
 FRAME_WIDTH = 1280
 FRAME_HEIGHT = 720
 
@@ -293,7 +293,7 @@ def draw_start_screen(frame):
 
     cx, cy = frame.shape[1] // 2, frame.shape[0] // 2
 
-    title = "ANTIGRAVITY PING PONG"
+    title = "PING PONG"
     ts = cv2.getTextSize(title, cv2.FONT_HERSHEY_SIMPLEX, 1.6, 3)[0]
     cv2.putText(frame, title, (cx - ts[0] // 2, cy - 40),
                 cv2.FONT_HERSHEY_SIMPLEX, 1.6, (0, 255, 200), 3, cv2.LINE_AA)
