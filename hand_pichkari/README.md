@@ -1,6 +1,6 @@
-# 🎨 Hand Pichkari — Competitive Holi Edition
+# 🎨 Hand Pichkari v4 — Competitive Holi Edition
 
-A hand-gesture controlled Holi game built with **OpenCV** and **MediaPipe**. Spray color at floating targets using a pinch gesture, avoid bombs, collect power-ups, and chase high scores!
+A hand-gesture controlled Holi game built with **OpenCV** and **MediaPipe**. Spray color at floating targets using pinch gestures, avoid bombs, collect power-ups, and chase high scores across three difficulty levels and a Time Trial mode!
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
 ![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green?logo=opencv)
@@ -10,130 +10,156 @@ A hand-gesture controlled Holi game built with **OpenCV** and **MediaPipe**. Spr
 
 ## 🚀 Quick Start
 
-### Prerequisites
-
-- Python 3.8+
-- A working webcam
-
-### Installation
-
 ```bash
 pip install opencv-python mediapipe numpy
-```
-
-### Run
-
-```bash
+pip install pygame              # optional — for better audio & background music
 python hand_pichkari.py
 ```
 
-Press **SPACE** on the title screen to begin.
+Press **1/2/3** to pick difficulty, **T** to toggle Time Trial, then **SPACE** to start.
 
 ---
 
-## 🎮 How to Play
+## 🎮 Controls
 
-| Action | Gesture / Key |
+| Action | Input |
 |---|---|
-| **Aim** | Move your hand — the pichkari follows the midpoint of your thumb & index finger |
-| **Spray** | Pinch thumb + index finger together |
-| **Switch color** | Each new pinch automatically cycles to the next Holi color |
-| **Restart** | Press `R` (in-game) or `SPACE` (on Game Over screen) |
-| **Quit** | Press `Q` or `ESC` |
+| **Aim** | Move hand (tracks thumb + index midpoint) |
+| **Spray** | Pinch thumb + index finger |
+| **Color cycle** | Auto-switches on each pinch |
+| **Difficulty** | `1` Easy · `2` Medium · `3` Hard (title screen) |
+| **Time Trial** | `T` toggle (title screen) |
+| **Restart** | `R` (mid-game) or `SPACE` (game over) |
+| **Quit** | `Q` / `ESC` |
 
 ---
 
 ## 🎯 Targets
 
-| Target | Appearance | Effect |
-|---|---|---|
-| **Normal** | ⚪ White circle | +1 point × combo. **Costs a life if it escapes!** |
-| **Gold** | 🌟 Golden with sparkles | **3× points** × combo |
-| **Bomb** | 💣 Black with red pulsing ✕ | **−1 life** if sprayed. Avoid these! |
+| Target | Look | Points | Notes |
+|---|---|---|---|
+| **Normal** | ⚪ White | 1× combo | Escaping costs a life |
+| **Gold** | 🌟 Golden sparkle | 3× combo | High value |
+| **Frozen** | 🧊 Ice-blue "ICE" | 2× combo | Needs **2 hits** to break |
+| **Bomb** | 💣 Black + red ✕ | — | Spraying costs a life (avoid!) |
 
 ---
 
-## ⚡ Power-Ups
-
-Power-ups float across the screen — spray them to collect. Each lasts **6 seconds**.
+## ⚡ Power-Ups (6 seconds each)
 
 | Power-Up | Label | Effect |
 |---|---|---|
-| **Big Spray** | `BIG` | 1.8× spray radius + more particles |
-| **Slow-Mo** | `SLO` | All targets move at half speed |
-| **Shield** | `SHD` | Immune to bomb damage (green ring indicator) |
+| **Big Spray** | `BIG` | 1.8× spray radius |
+| **Slow-Mo** | `SLO` | Targets move at half speed |
+| **Shield** | `SHD` | Immune to bombs |
 
 ---
 
-## 📈 Competitive Mechanics
+## 📈 Competitive Features
 
-### Lives
-You start with **5 lives** (❤️). You lose a life when:
-- A **normal target escapes** off-screen without being hit
-- You **spray a bomb** (unless shielded)
-
-Game ends at 0 lives.
-
-### Combo System
-Hit targets within **2 seconds** of each other to build combos:
-- 1st hit → ×1
-- 2nd hit → ×2
-- 3rd hit → ×3 … and so on!
-
-Missing a target or letting the timer expire resets your combo.
-
-### Progressive Difficulty
-Every **8 points** increases the level (max Lv.15):
-- Targets spawn **faster** and move **quicker**
-- Targets get **smaller**
-- **More targets** on screen simultaneously
-- Higher chance of **bombs** and **gold** targets
+| Feature | Details |
+|---|---|
+| **3 Difficulties** | Easy (7 lives) · Medium (5 lives) · Hard (3 lives) |
+| **Time Trial Mode** | 60-second countdown, unlimited lives, press `T` to toggle |
+| **Combo System** | Hit within 2s for ×2, ×3, ×4… multiplier + screen-edge flash |
+| **Progressive Levels** | Every N points → faster, smaller, more targets + bombs |
+| **High Score Persistence** | Saved per-difficulty & per-mode to `highscores.json` |
+| **Accuracy Tracking** | Spray attempts vs. successful hits |
+| **Best Combo** | Tracked and shown on game-over |
+| **FPS Counter** | Bottom-right corner |
 
 ---
 
-## 🎨 Visual Features
+## 🔊 Audio
 
-- **Mirrored camera feed** as the game background
-- **Persistent paint stains** — hit targets leave colorful splatters
-- **Screen shake** on impacts and bomb explosions
-- **Floating score text** — animated "+3 ×2 GOLD!" on hits
-- **Wobbling targets** — some move in sine-wave patterns
-- **Particle spray** and **radial splash** effects
-- **9 vibrant Holi colors** cycle with each pinch
+- **With pygame installed**: Synthesized WAV tones — pop (hit), bling (gold), boom (bomb), chime (power-up), fanfare (level-up), plus low-volume background music loop
+- **Without pygame**: Falls back to Windows `winsound` beeps
+- **Neither available**: Runs silently
 
 ---
 
-## 🛠️ Configuration
+## 🎨 Visual Polish
 
-Key settings at the top of `hand_pichkari.py`:
-
-| Setting | Default | Description |
-|---|---|---|
-| `CAM_WIDTH / CAM_HEIGHT` | 1280 × 720 | Camera resolution |
-| `PINCH_THRESHOLD` | 42 px | Pinch sensitivity (lower = harder to trigger) |
-| `MAX_LIVES` | 5 | Starting lives |
-| `LEVEL_UP_SCORE` | 8 | Points needed per level |
-| `COMBO_TIMEOUT` | 2.0 s | Time window to maintain combo |
-| `POWERUP_DURATION` | 6.0 s | How long power-ups last |
-| `BASE_SPRAY_RADIUS` | 55 px | Normal spray hit radius |
+- **Threaded hand detection** — MediaPipe runs in a background thread for smooth FPS
+- **Frame skipping** — processes every 2nd frame, reusing results for skipped frames
+- **Smooth hand tracking** — EMA filter eliminates jitter
+- **Particle gravity** — splash particles arc downward (dripping paint effect)
+- **Rainbow trail** — colorful trail follows the pichkari
+- **Dynamic Holi border** — cycling colored border around the frame
+- **"Holi Hai!" watermark** — semi-transparent bottom-left corner text
+- **Combo flash** — screen-edge glow at ×3+ combos
+- **Persistent paint stains** — targets leave color splatters on the background
+- **Screen shake** — on impacts and bomb explosions
+- **Floating score text** — animated "+3 ×2 GOLD!" popups
 
 ---
 
-## 📁 Project Structure
+## ⚙️ Configuration
+
+All tunable parameters live in `settings.json` (loaded at startup, hardcoded defaults used as fallback):
+
+| Section | Key | Default | Description |
+|---|---|---|---|
+| `camera` | `width` / `height` | 1280×720 | Camera resolution |
+| `camera` | `device_index` | 0 | Webcam device ID |
+| `hand_tracking` | `pinch_threshold` | 42 px | Pinch sensitivity |
+| `hand_tracking` | `smooth_factor` | 0.45 | Position smoothing (0=none) |
+| `hand_tracking` | `frame_skip` | 2 | Process every Nth frame |
+| `spray` | `particle_gravity` | 0.15 | Drip effect strength |
+| `gameplay` | `combo_timeout` | 2.0 s | Combo window |
+| `gameplay` | `time_trial_seconds` | 60 | Time Trial duration |
+| `powerup` | `duration` | 6.0 s | Power-up active time |
+| `difficulty.*` | various | — | Per-difficulty speed, lives, spawn rate |
+
+---
+
+## 📁 Files
 
 ```
 hand_pichkari/
-├── hand_pichkari.py   # Complete game script
-└── README.md          # This file
+├── hand_pichkari.py    # Game script (~1400 lines)
+├── settings.json       # External config (all tunable params)
+├── highscores.json     # Auto-generated high scores
+└── README.md           # This file
 ```
 
 ---
 
 ## 🧰 Tech Stack
 
-- **[OpenCV](https://opencv.org/)** — Camera capture, drawing, display
-- **[MediaPipe](https://mediapipe.dev/)** — Real-time hand landmark detection
-- **[NumPy](https://numpy.org/)** — Array operations for screen shake & polygon drawing
+- **[OpenCV](https://opencv.org/)** — Camera, drawing, display
+- **[MediaPipe](https://mediapipe.dev/)** — Hand landmark detection (threaded)
+- **[NumPy](https://numpy.org/)** — Polygon & matrix ops
+- **[Pygame](https://www.pygame.org/)** *(optional)* — Audio mixer with synthesized WAV tones
+- **Python `logging`** — Professional console logging
+- **Python `threading`** — Async hand detection & non-blocking sound
+
+---
+
+## 🧠 Technical Challenges
+
+### 1. Real-Time Hand Tracking at High FPS
+MediaPipe hand detection is compute-heavy (~30ms per frame). Running it synchronously dropped the game below 20 FPS. **Solution**: Moved detection to a daemon thread with configurable frame-skipping — the main loop reads the latest result without blocking, keeping the display at full camera FPS.
+
+### 2. Gesture Precision
+Raw hand landmark positions jump between frames, making the pichkari jittery. **Solution**: Applied an exponential moving average (EMA) filter on the hand midpoint, tunable via `smooth_factor` in `settings.json`.
+
+### 3. Audio Without External Files
+The game needed sound effects but shipping `.wav` files is fragile. **Solution**: Programmatically synthesized WAV tones in memory using `struct` + `wave` + `math.sin()`, then loaded them as `pygame.mixer.Sound` objects. No external audio files required.
+
+### 4. Multi-Layered Rendering
+Drawing stains, particles, splashes, HUD, and overlays on a live camera feed without flicker required careful layering with `cv2.addWeighted()` for semi-transparency, rendered in a specific back-to-front order.
+
+---
+
+## 📋 Development Phases
+
+| Phase | Focus | Key Deliverables |
+|---|---|---|
+| **Phase 1: Core Logic** | Hand tracking, pinch detection, target spawning, collision | Working gesture-to-spray pipeline |
+| **Phase 2: Gameplay** | Lives, combo, difficulty levels, bomb/gold/frozen targets, power-ups | Complete game mechanics |
+| **Phase 3: Visual Polish** | Particles, stains, screen shake, trail, HUD, start/game-over screens | Premium visual experience |
+| **Phase 4: Optimization** | Threaded detection, frame-skip, EMA smoothing, external config, logging, pygame audio, time trial | Production-ready game |
 
 ---
 
