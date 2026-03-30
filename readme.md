@@ -1,62 +1,97 @@
-# Rudrapuri Gauswami
-**Python & Odoo Developer | ECE Graduate (2026)**
+# 🎮 ML Learn — Hand-Gesture Game Collection
 
-📧 gauswamirudra497@gmail.com | 📱 +91 7283898894 | 📍 Visavadar / Rajkot, Gujarat  
-🔗 [LinkedIn](Insert_Link_Here) | 🐙 [GitHub](Insert_Link_Here)
+A collection of interactive games powered by **computer vision** and **hand tracking**. Each game uses your webcam and [MediaPipe](https://mediapipe.dev/) to turn hand gestures into real-time controls — no keyboard or mouse needed!
 
----
-
-## 🚀 Professional Objective
-Driven Electronics and Communication Engineering graduate (Class of 2026) blending core ECE fundamentals with robust backend software development skills. Eager to bring my Python programming expertise, highly analytical mindset, and 448+ hours of enterprise development experience to engineer efficient, scalable systems at the intersection of hardware and software.
+![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green?logo=opencv)
+![MediaPipe](https://img.shields.io/badge/MediaPipe-0.10+-orange)
 
 ---
 
-## 🎓 Education
+## 🕹️ Games
 
-**Government Engineering College (GEC), Bhavnagar**
-*Bachelor of Engineering in Electronics & Communication* | 2022 – 2026
-* **Current CGPA:** 7.5
-* Affiliated with Gujarat Technological University, Ahmedabad.
-* Building a strong analytical foundation in system architecture and emerging AI technologies alongside core coursework.
+### 🎨 [Hand Pichkari](hand_pichkari/) — Competitive Holi Edition
 
----
+A Holi-themed color-spraying game! Aim with your hand, pinch to spray color at floating targets, avoid bombs, collect power-ups, and chase high scores.
 
-## 💻 Work Experience
+| Highlights | |
+|---|---|
+| **Controls** | Pinch gesture to spray, hand movement to aim |
+| **Modes** | 3 difficulty levels + Time Trial |
+| **Targets** | Normal, Gold (3×), Frozen (2-hit), Bomb |
+| **Power-Ups** | Big Spray, Slow-Mo, Shield |
+| **Extras** | Combo system, particle effects, persistent high scores, threaded hand detection |
 
-### Python & Odoo Developer Intern
-*Remote / Gujarat* | *December 2025 – Present*
-* Engineered and optimized scalable enterprise applications in Odoo 18 and Odoo 19 using Python, PostgreSQL, and XML across 448+ hours of intensive, hands-on development.
-* Architected dynamic Purchase Order Approval Hierarchies, establishing strict multi-level access controls and user permissions by overriding and inheriting core models.
-* Utilized Odoo ORM methods (`create`, `write`, `search`) to build secure backend business logic, ensuring high-performance execution and data integrity across multiple version environments.
-
-### Summer GTU Intern - Artificial Intelligence
-*CSRBOX Foundation* | *July 02, 2025 – July 16, 2025*
-* Completed an intensive technical program focusing on Artificial Intelligence fundamentals and their real-world system applications.
-* Bridged core Electronics & Communication Engineering concepts with emerging AI technologies, exploring how data-driven algorithms integrate with modern tech ecosystems.
+```bash
+cd hand_pichkari
+pip install opencv-python mediapipe numpy pygame
+python hand_pichkari.py
+```
 
 ---
 
-## 🛠️ Technical Skills
-* **Programming Languages:** Python, SQL, XML, C/C++
-* **Frameworks & Databases:** Odoo Framework (v18/v19), PostgreSQL, Relational Databases
-* **Core Competencies:** Object-Oriented Programming (OOP), Backend Business Logic, System Architecture
-* **Developer Tools:** Git, GitHub, Linux, VS Code
+### 🏓 [Ping Pong](ping-pong/) — Hand-Tracked Pong
+
+A classic 2D pong game controlled by your index finger. Features adaptive difficulty, combo scoring, and slick visual effects.
+
+| Highlights | |
+|---|---|
+| **Controls** | Move right hand's index finger to control paddle |
+| **Difficulty** | Ball speeds up & paddle shrinks as you score |
+| **Effects** | Ball trail, particle explosions, paddle glow |
+| **Scoring** | Combo multiplier system |
+
+```bash
+cd ping-pong
+pip install opencv-python mediapipe numpy
+python ping_pong.py
+```
 
 ---
 
-## 📂 Key Academic & Professional Projects
+## 📦 Prerequisites
 
-* **GTU PMMS CRM Module:** Developed a specialized Customer Relationship Management (CRM) module tailored for the GTU PMMS portal to streamline project tracking and user management, handling complex relational database queries.
-* **Library Management System:** Architecting a comprehensive Library Management backend module in Odoo, focusing on efficient data structures, custom access controls, and inventory tracking.
+- **Python 3.8+**
+- A working **webcam**
+- Core dependencies:
+  ```bash
+  pip install opencv-python mediapipe numpy
+  ```
+- Optional (for audio in Hand Pichkari):
+  ```bash
+  pip install pygame
+  ```
 
 ---
 
-## 🎯 Hobbies & Interests
-* IoT Tinkering and Prototyping (Raspberry Pi/Arduino)
-* Automating daily tasks and workflows with Python scripts
-* Strategic logic games (Chess, algorithmic problem-solving)
+## 🗂️ Repository Structure
+
+```
+ml_learn/
+├── hand_pichkari/
+│   ├── hand_pichkari.py    # Holi spray game (~1400 lines)
+│   ├── settings.json       # External config
+│   ├── highscores.json     # Auto-generated scores
+│   └── README.md           # Detailed game docs
+├── ping-pong/
+│   ├── ping_pong.py        # Ping pong game (~550 lines)
+│   └── README.md           # Detailed game docs
+└── README.md               # This file
+```
 
 ---
 
-## 🗣️ Languages
-* English, Hindi, Gujarati
+## 🛠️ Tech Stack
+
+| Library | Purpose |
+|---|---|
+| [OpenCV](https://opencv.org/) | Camera capture, drawing, display |
+| [MediaPipe](https://mediapipe.dev/) | Real-time hand landmark detection |
+| [NumPy](https://numpy.org/) | Array & math operations |
+| [Pygame](https://www.pygame.org/) *(optional)* | Audio mixer for sound effects |
+
+---
+
+## 📄 License
+
+This project is open source. Feel free to modify and share!
