@@ -10,7 +10,7 @@ A collection of interactive games powered by **computer vision** and **hand trac
 
 ## 🕹️ Games
 
-### 🎨 [Hand Pichkari](hand_pichkari/) — Competitive Holi Edition
+### 🎨 [Hand Pichkari](hand_pichkari/) — Competitive Holi Edition 
 
 A Holi-themed color-spraying game! Aim with your hand, pinch to spray color at floating targets, avoid bombs, collect power-ups, and chase high scores.
 
