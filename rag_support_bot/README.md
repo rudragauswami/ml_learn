@@ -2,7 +2,7 @@
 
 A highly accurate Retrieval-Augmented Generation (RAG) Customer Support Bot built in Python. This bot prevents "hallucinations" by strictly answering questions using a private knowledge base (provided in `data/knowledge_base.txt`).
 
-**Tech Stack:** 
+**Tech Stack:**  
 - **Language**: Python
 - **Orchestration**: LangChain
 - **Embeddings**: HuggingFace (`all-MiniLM-L6-v2`) — *runs locally, 100% free.*
