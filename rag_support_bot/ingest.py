@@ -52,4 +52,4 @@ def main():
     print("Success! The data has been ingested and the local vector database is ready.")
 
 if __name__ == "__main__":
-    main()
+    main() 
