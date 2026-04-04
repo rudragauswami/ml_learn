@@ -4,7 +4,7 @@ A 2D ping pong game controlled by **hand gestures** via your webcam. Uses **Open
 
 ---
 
-## ✨ Features
+## ✨ Features  
 
 | Feature | Description |
 |---------|-------------|
