@@ -8,7 +8,7 @@ A hand-gesture controlled Holi game built with **OpenCV** and **MediaPipe**. Spr
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start   
 
 ```bash
 pip install opencv-python mediapipe numpy
