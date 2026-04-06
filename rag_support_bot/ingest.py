@@ -5,8 +5,10 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
-DATA_DIR = "data"
-DB_DIR = ".chroma_db"
+from config import Config
+
+DATA_DIR = Config.DATA_DIR
+DB_DIR = Config.CHROMA_DB_DIR
 
 def main():
     print(f"Loading documents from {DATA_DIR}...")
@@ -40,7 +42,7 @@ def main():
     # Embeddings translate textual meaning into coordinate maps (vectors).
     # We use HuggingFace (locally) to avoid API charges during the embedding stage.
     print("Downloading/Loading Embedding Model (all-MiniLM-L6-v2)...")
-    embedding_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    embedding_model = HuggingFaceEmbeddings(model_name=Config.EMBEDDING_MODEL_NAME)
 
     print(f"Creating ChromaDB Vector Store in {DB_DIR}...")
     vector_store = Chroma.from_documents(
