@@ -1,4 +1,4 @@
-# 🎮 ML Learn — Hand-Gesture Game Collection
+# 🎮 ML Learn — Hand-Gesture Game Collection 
 
 A collection of interactive games powered by **computer vision** and **hand tracking**. Each game uses your webcam and [MediaPipe](https://mediapipe.dev/) to turn hand gestures into real-time controls — no keyboard or mouse needed!
 
